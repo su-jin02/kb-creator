@@ -107,6 +107,15 @@
       position: relative; z-index: 1;
     }
 
+    .hero-team {
+      font-size: clamp(13px, 2vw, 17px);
+      font-weight: 800;
+      color: rgba(0,0,0,0.55);
+      letter-spacing: 1px;
+      margin-bottom: 40px;
+      position: relative; z-index: 1;
+    }
+
     .scroll-hint {
       position: relative; z-index: 1;
       display: flex;
@@ -407,6 +416,57 @@
 
     .modal-desc strong { color: var(--kb-black); }
 
+    .insta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .insta-card {
+      display: block;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 2px solid #e0e0e0;
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+
+    .insta-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
+      border-color: #C13584;
+    }
+
+    .insta-card-img {
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+      display: block;
+      background: #f0f0f0;
+    }
+
+    .insta-card-img-placeholder {
+      width: 100%;
+      aspect-ratio: 1/1;
+      background: linear-gradient(135deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .insta-card-footer {
+      padding: 8px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      color: #C13584;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
     .blog-preview-card {
       display: block;
       border-radius: 16px;
@@ -527,10 +587,11 @@
 
   <h1>
     KB를 이끌어갈
-    <span>차세대 MZ사원</span>
+    <span>⭐ 차세대 MZ사원 ⭐</span>
   </h1>
 
   <p class="hero-sub">우리는 콘텐츠로 KB의 내일을 그립니다</p>
+  <p class="hero-team">🏆 KB증권을 빛낼 최강 조합 5인방 🏆</p>
 
   <div class="scroll-hint">팀원 만나기</div>
 </section>
@@ -573,48 +634,54 @@
   const members = [
     {
       name: "박서희",
-      intro: "아이디어로 세상을 바꾸는 기획자",
-      tag: "기획",
-      emoji: "😎",
-      photo: "",           // 사진 URL 또는 로컬 경로 (없으면 이모지 표시)
-      videoUrl: "",        // YouTube embed URL 또는 mp4 URL
-      desc: "KB의 디지털 혁신을 콘텐츠로 담아냈습니다. 고객의 일상 속 KB를 보여주는 브이로그 형식의 영상 제작물입니다."
+      intro: "🎥 렌즈 뒤에서 모든 장면을 완성하는 사람",
+      tag: "촬영연출",
+      emoji: "🎥",
+      photo: "file/se.jpeg",
+      instaUrls: [
+        "https://www.instagram.com/reel/DS1ssz_kzoTT_NttCTvPvoz26pfXz_b3x7PGW40/?igsh=MXdicGs5aXd1cGw5dA==",
+        "https://www.instagram.com/reel/DRHDjy5E95snZ9Rzg055_M-ukyIuV2GvXG7D1w0/?igsh=bDA2bjc5cmhyanZz",
+        "https://www.instagram.com/reel/CwEzeX-hzGEwI4zXBBAxfcKrWG_PjI8d4a0cJQ0/?igsh=MW5rZ2h2b3ZwazE5Yw=="
+      ],
+      desc: "KB의 일상을 감각적인 릴스로 담아낸 촬영 연출 작품들입니다."
     },
     {
       name: "천은지",
-      intro: "영상으로 감동을 전달하는 크리에이터",
-      tag: "영상편집",
-      emoji: "🎬",
+      intro: "사람 마음을 여는 말, 그게 내 특기 🗣️",
+      tag: "인터뷰 & 커뮤니케이션",
+      emoji: "🎙️",
       photo: "",
+      videoUrl: "file/en.mp4",
       blogUrl: "",         // 블로그 URL을 여기에 입력하세요
       desc: "MZ세대의 시선으로 바라본 KB금융의 이야기를 담은 콘텐츠입니다."
     },
     {
       name: "지유리",
-      intro: "데이터로 트렌드를 읽는 분석가",
-      tag: "마케팅",
-      emoji: "📊",
-      photo: "",
+      intro: "✨ 이야기를 설계하는 사람, 기획이 곧 세계관",
+      tag: "스토리기획",
+      emoji: "✍️",
+      photo: "file/yuri.jpeg",
       videoUrl: "",
       desc: "금융 트렌드와 KB의 혁신을 인포그래픽 영상으로 풀어낸 작품입니다."
     },
     {
       name: "장현지",
-      intro: "디자인으로 브랜드를 빛내는 아티스트",
-      tag: "디자인",
-      emoji: "🎨",
+      intro: "🧭 팀의 방향을 잡는 사람, 혼돈 속의 나침반",
+      tag: "총괄PM",
+      emoji: "🧭",
       photo: "",
       videoUrl: "",
       desc: "KB의 브랜드 아이덴티티를 모션그래픽으로 재해석한 크리에이티브 영상입니다."
     },
     {
       name: "전수진",
-      intro: "개발로 미래 금융을 만드는 엔지니어",
-      tag: "개발",
-      emoji: "💻",
+      intro: "영상의 마무리는 내가 책임진다, 편집의 신 ✂️",
+      tag: "편집",
+      emoji: "🎬",
       photo: "file/sujin.jpeg",
       videoUrl: "file/sujin.mp4",
       blogUrl: "https://m.blog.naver.com/hera4224/223011056461",
+      blogPreviewImg: "file/sujin_blog.jpeg",
       desc: "어학연수 경험으로 쌓은 글쓰기 최강 능력 블로거"
     }
   ];
@@ -643,9 +710,52 @@
   });
 
   // ── 블로그 미리보기 ──
-  async function renderBlogPreview(containerId, url) {
+  async function renderInstaGrid(containerId, urls) {
     const el = document.getElementById(containerId);
     if (!el) return;
+    el.innerHTML = urls.map((_, i) =>
+      `<a class="insta-card" id="${containerId}-${i}" href="${urls[i]}" target="_blank" rel="noopener noreferrer">
+        <div class="insta-card-img-placeholder">📸</div>
+        <div class="insta-card-footer">● 불러오는 중...</div>
+      </a>`
+    ).join('');
+
+    urls.forEach(async (url, i) => {
+      const card = document.getElementById(`${containerId}-${i}`);
+      if (!card) return;
+      try {
+        const res = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}`);
+        const data = await res.json();
+        if (data.status === 'success') {
+          const { image } = data.data;
+          const imgHtml = image?.url
+            ? `<img class="insta-card-img" src="${image.url}" alt="Instagram Reel" />`
+            : `<div class="insta-card-img-placeholder">🎬</div>`;
+          card.innerHTML = `
+            ${imgHtml}
+            <div class="insta-card-footer">▶ Reel ${i + 1} 보기</div>`;
+        }
+      } catch { /* 실패 시 placeholder 유지 */ }
+    });
+  }
+
+  async function renderBlogPreview(containerId, url, localImg) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+
+    // 로컬 이미지가 있으면 API 호출 없이 바로 표시
+    if (localImg) {
+      el.innerHTML = `
+        <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
+          <img class="blog-preview-img" src="${localImg}" alt="블로그 미리보기" />
+          <div class="blog-preview-info">
+            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-domain">📝 blog.naver.com</div>
+          </div>
+        </a>`;
+      return;
+    }
+
     el.innerHTML = `<div class="blog-link-box"><span style="color:#aaa;font-size:14px;">미리보기 불러오는 중...</span></div>`;
     try {
       const res = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}`);
@@ -694,6 +804,18 @@
       : `<div class="avatar-placeholder">${m.emoji}</div>`;
     modalName.textContent = m.name;
     modalIntro.textContent = m.intro;
+    // 인스타그램 릴스가 있는 경우
+    if (m.instaUrls && m.instaUrls.length) {
+      modalDesc.innerHTML = `<strong>${m.name}</strong>의 인스타그램 릴스<br><br>${m.desc}`;
+      videoWrapper.style.paddingBottom = '0';
+      videoWrapper.style.height = 'auto';
+      videoWrapper.innerHTML = `<div class="insta-grid" id="insta-grid-${i}"></div>`;
+      renderInstaGrid(`insta-grid-${i}`, m.instaUrls);
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+
     // 영상 없이 블로그만 있는 경우
     if (m.blogUrl !== undefined && !m.videoUrl) {
       modalDesc.innerHTML = `<strong>${m.name}</strong>의 블로그 콘텐츠<br><br>${m.desc}`;
@@ -701,7 +823,7 @@
       videoWrapper.style.height = 'auto';
       videoWrapper.innerHTML = `<div id="blog-preview-solo"></div>`;
       if (m.blogUrl) {
-        renderBlogPreview('blog-preview-solo', m.blogUrl);
+        renderBlogPreview('blog-preview-solo', m.blogUrl, m.blogPreviewImg);
       } else {
         document.getElementById('blog-preview-solo').innerHTML =
           `<div class="blog-link-box"><span style="color:#aaa;font-size:14px;">블로그 URL을 등록해주세요</span></div>`;
@@ -732,7 +854,7 @@
       if (m.blogUrl !== undefined && m.blogUrl) {
         const previewId = 'blog-preview-' + i;
         modalDesc.innerHTML += `<div id="${previewId}" style="margin-top:16px;"></div>`;
-        renderBlogPreview(previewId, m.blogUrl);
+        renderBlogPreview(previewId, m.blogUrl, m.blogPreviewImg);
       }
     }
 
