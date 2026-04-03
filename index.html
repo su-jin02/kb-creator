@@ -184,13 +184,13 @@
     .member-card {
       background: white;
       border-radius: 24px;
-      padding: 28px 16px 24px;
+      padding: 36px 24px 30px;
       text-align: center;
       cursor: pointer;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border: 2px solid transparent;
       width: 100%;
-      max-width: 220px;
+      max-width: 260px;
       position: relative;
       overflow: hidden;
     }
@@ -216,9 +216,9 @@
     .member-card:active { transform: translateY(-4px) scale(0.98); }
 
     .member-photo {
-      width: 100px; height: 100px;
+      width: 124px; height: 124px;
       border-radius: 50%;
-      margin: 0 auto 16px;
+      margin: 0 auto 20px;
       overflow: hidden;
       border: 3px solid var(--kb-yellow-light);
       background: var(--kb-yellow-light);
@@ -257,24 +257,24 @@
     .member-card:hover .play-icon { opacity: 1; }
 
     .member-name {
-      font-size: 17px;
+      font-size: 20px;
       font-weight: 800;
       color: var(--kb-black);
       margin-bottom: 8px;
     }
 
     .member-intro {
-      font-size: 13px;
+      font-size: 15px;
       color: var(--kb-gray);
       line-height: 1.55;
     }
 
     .member-tag {
       display: inline-block;
-      margin-top: 12px;
+      margin-top: 14px;
       background: var(--kb-yellow-light);
       color: var(--kb-yellow-dark);
-      font-size: 11px;
+      font-size: 13px;
       font-weight: 700;
       padding: 4px 12px;
       border-radius: 50px;
@@ -416,28 +416,24 @@
 
     .modal-desc strong { color: var(--kb-black); }
 
-    .insta-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+    .insta-scroll {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
     }
 
     .insta-card {
       display: block;
-      border-radius: 14px;
-      overflow: hidden;
-      border: 2px solid #e0e0e0;
       text-decoration: none;
       color: inherit;
-      transition: transform 0.2s, box-shadow 0.2s;
+      border: 2px solid #e0e0e0;
+      border-radius: 16px;
+      overflow: hidden;
       background: white;
+      transition: border-color 0.2s;
     }
 
-    .insta-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.12);
-      border-color: #C13584;
-    }
+    .insta-card:hover { border-color: #C13584; }
 
     .insta-card-img {
       width: 100%;
@@ -454,17 +450,21 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 32px;
+      font-size: 48px;
     }
 
     .insta-card-footer {
-      padding: 8px 10px;
-      font-size: 11px;
+      padding: 10px 14px;
+      font-size: 13px;
       font-weight: 700;
       color: #C13584;
-      display: flex;
-      align-items: center;
-      gap: 4px;
+    }
+
+    .insta-scroll-hint {
+      text-align: center;
+      font-size: 12px;
+      color: #aaa;
+      margin-top: 6px;
     }
 
     .blog-preview-card {
@@ -618,8 +618,9 @@
       <button class="modal-close" id="modalClose">✕</button>
     </div>
     <div class="modal-body">
-      <div class="video-wrapper" id="videoWrapper"></div>
       <p class="modal-desc" id="modalDesc"></p>
+      <div class="video-wrapper" id="videoWrapper"></div>
+      <div id="modalBlogArea"></div>
     </div>
   </div>
 </div>
@@ -643,7 +644,7 @@
         "https://www.instagram.com/reel/DRHDjy5E95snZ9Rzg055_M-ukyIuV2GvXG7D1w0/?igsh=bDA2bjc5cmhyanZz",
         "https://www.instagram.com/reel/CwEzeX-hzGEwI4zXBBAxfcKrWG_PjI8d4a0cJQ0/?igsh=MW5rZ2h2b3ZwazE5Yw=="
       ],
-      desc: "KB의 일상을 감각적인 릴스로 담아낸 촬영 연출 작품들입니다."
+      desc: "🎬 이 구역 최신 유행 릴스는 나야나 💅"
     },
     {
       name: "천은지",
@@ -653,7 +654,7 @@
       photo: "",
       videoUrl: "file/en.mp4",
       blogUrl: "",         // 블로그 URL을 여기에 입력하세요
-      desc: "MZ세대의 시선으로 바라본 KB금융의 이야기를 담은 콘텐츠입니다."
+      desc: "🇲🇳 몽골에서 터진 그 쇼츠, 바로 나야 🔥"
     },
     {
       name: "지유리",
@@ -661,8 +662,8 @@
       tag: "스토리기획",
       emoji: "✍️",
       photo: "file/yuri.jpeg",
-      videoUrl: "",
-      desc: "금융 트렌드와 KB의 혁신을 인포그래픽 영상으로 풀어낸 작품입니다."
+      videoUrl: "file/yuri.mp4",
+      desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥"
     },
     {
       name: "장현지",
@@ -682,7 +683,8 @@
       videoUrl: "file/sujin.mp4",
       blogUrl: "https://m.blog.naver.com/hera4224/223011056461",
       blogPreviewImg: "file/sujin_blog.jpeg",
-      desc: "어학연수 경험으로 쌓은 글쓰기 최강 능력 블로거"
+      blogDesc: "🥝 뉴질랜드 어학연수 경험을 담은 블로그",
+      desc: "🇪🇬 이집트 놀러가서 낋여온 유행 쇼츠 🎬"
     }
   ];
 
@@ -713,13 +715,19 @@
   async function renderInstaGrid(containerId, urls) {
     const el = document.getElementById(containerId);
     if (!el) return;
-    el.innerHTML = urls.map((_, i) =>
-      `<a class="insta-card" id="${containerId}-${i}" href="${urls[i]}" target="_blank" rel="noopener noreferrer">
-        <div class="insta-card-img-placeholder">📸</div>
-        <div class="insta-card-footer">● 불러오는 중...</div>
-      </a>`
-    ).join('');
 
+    // 초기 플레이스홀더 렌더
+    el.innerHTML = `
+      <div class="insta-scroll">
+        ${urls.map((url, i) => `
+          <a class="insta-card" id="${containerId}-${i}" href="${url}" target="_blank" rel="noopener noreferrer">
+            <div class="insta-card-img-placeholder">📸</div>
+            <div class="insta-card-footer">불러오는 중...</div>
+          </a>`).join('')}
+      </div>
+      <p class="insta-scroll-hint">← 옆으로 밀어서 더 보기 →</p>`;
+
+    // 각 카드 미리보기 fetch
     urls.forEach(async (url, i) => {
       const card = document.getElementById(`${containerId}-${i}`);
       if (!card) return;
@@ -731,11 +739,9 @@
           const imgHtml = image?.url
             ? `<img class="insta-card-img" src="${image.url}" alt="Instagram Reel" />`
             : `<div class="insta-card-img-placeholder">🎬</div>`;
-          card.innerHTML = `
-            ${imgHtml}
-            <div class="insta-card-footer">▶ Reel ${i + 1} 보기</div>`;
+          card.innerHTML = `${imgHtml}<div class="insta-card-footer">▶ Reel ${i + 1} 보기</div>`;
         }
-      } catch { /* 실패 시 placeholder 유지 */ }
+      } catch { /* 플레이스홀더 유지 */ }
     });
   }
 
@@ -806,7 +812,7 @@
     modalIntro.textContent = m.intro;
     // 인스타그램 릴스가 있는 경우
     if (m.instaUrls && m.instaUrls.length) {
-      modalDesc.innerHTML = `<strong>${m.name}</strong>의 인스타그램 릴스<br><br>${m.desc}`;
+      modalDesc.innerHTML = m.desc ? `<strong style="font-size:17px;">${m.desc}</strong>` : '';
       videoWrapper.style.paddingBottom = '0';
       videoWrapper.style.height = 'auto';
       videoWrapper.innerHTML = `<div class="insta-grid" id="insta-grid-${i}"></div>`;
@@ -830,7 +836,7 @@
       }
     } else {
       // 영상이 있는 경우
-      modalDesc.innerHTML = `<strong>${m.name}</strong>의 영상 제작물<br><br>${m.desc}`;
+      modalDesc.innerHTML = m.desc ? `<strong style="font-size:17px;">${m.desc}</strong>` : '';
       videoWrapper.style.paddingBottom = '56.25%';
       videoWrapper.style.height = '0';
       if (m.videoUrl) {
@@ -850,11 +856,13 @@
             <span>영상 URL을 등록해주세요</span>
           </div>`;
       }
-      // 영상 + 블로그 둘 다 있는 경우 미리보기 카드 추가
+      // 영상 + 블로그 둘 다 있는 경우 영상 아래에 렌더링
+      const blogArea = document.getElementById('modalBlogArea');
+      blogArea.innerHTML = '';
       if (m.blogUrl !== undefined && m.blogUrl) {
-        const previewId = 'blog-preview-' + i;
-        modalDesc.innerHTML += `<div id="${previewId}" style="margin-top:16px;"></div>`;
-        renderBlogPreview(previewId, m.blogUrl, m.blogPreviewImg);
+        const blogLabel = m.blogDesc ? `<p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.blogDesc}</p>` : '';
+        blogArea.innerHTML = `${blogLabel}<div id="blog-preview-below"></div>`;
+        renderBlogPreview('blog-preview-below', m.blogUrl, m.blogPreviewImg);
       }
     }
 
@@ -865,7 +873,10 @@
   function closeModal() {
     overlay.classList.remove('active');
     document.body.style.overflow = '';
-    setTimeout(() => { videoWrapper.innerHTML = ''; }, 300);
+    setTimeout(() => {
+      videoWrapper.innerHTML = '';
+      document.getElementById('modalBlogArea').innerHTML = '';
+    }, 300);
   }
 
   document.getElementById('modalClose').addEventListener('click', closeModal);
