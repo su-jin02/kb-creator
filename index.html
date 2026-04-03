@@ -778,7 +778,8 @@
         "https://www.instagram.com/reel/DRHDjy5E95snZ9Rzg055_M-ukyIuV2GvXG7D1w0/?igsh=bDA2bjc5cmhyanZz",
         "https://www.instagram.com/reel/CwEzeX-hzGEwI4zXBBAxfcKrWG_PjI8d4a0cJQ0/?igsh=MW5rZ2h2b3ZwazE5Yw=="
       ],
-      desc: "🎬 이 구역 최신 유행 릴스는 나야나 💅"
+      desc: "🎬 이 구역 최신 유행 릴스는 나야나 💅",
+      profileInsta: "https://www.instagram.com/record_seo00?igsh=c2ptbWsxN2x3N2Zv&utm_source=qr"
     },
     {
       name: "천은지",
@@ -800,9 +801,7 @@
       desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥",
       extraImg: "file/yuri2.jpeg",
       extraImgDesc: "🎨 저 포토샵 능력도 끝내줘요 💅",
-      blogUrl: "https://velog.io/@ur2e/StringBuilder",
-      blogDesc: "📚 저 사실 공부도 잘해요",
-      blogEmoji: "📚"
+      blogDesc: "📚 저 사실 공부도 잘해요"
     },
     {
       name: "장현지",
@@ -1029,6 +1028,21 @@
       videoWrapper.style.height = 'auto';
       videoWrapper.innerHTML = `<div class="insta-grid" id="insta-grid-${i}"></div>`;
       renderInstaGrid(`insta-grid-${i}`, m.instaUrls);
+      const instaProfileArea = document.getElementById('modalBlogArea');
+      instaProfileArea.innerHTML = '';
+      if (m.profileInsta) {
+        instaProfileArea.innerHTML = `
+          <a href="${m.profileInsta}" target="_blank" rel="noopener noreferrer"
+            style="display:flex;align-items:center;gap:14px;margin-top:20px;padding:16px 20px;border-radius:16px;background:linear-gradient(135deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);text-decoration:none;color:white;transition:transform 0.2s,box-shadow 0.2s;"
+            onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 28px rgba(0,0,0,0.2)'"
+            onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:36px;">📸</span>
+            <div>
+              <div style="font-size:13px;font-weight:700;opacity:0.85;margin-bottom:4px;">대외활동 인스타그램</div>
+              <div style="font-size:16px;font-weight:900;">@record_seo00 보러가기 →</div>
+            </div>
+          </a>`;
+      }
       overlay.classList.add('active');
       document.body.style.overflow = 'hidden';
       return;
