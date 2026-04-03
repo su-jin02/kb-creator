@@ -799,7 +799,7 @@
       videoUrl: "file/yuri.mp4",
       desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥",
       extraImg: "file/yuri2.jpeg",
-      extraImgDesc: "🎨 포토샵? 그것도 제 특기예요 ✨",
+      extraImgDesc: "🎨 저 포토샵 능력도 끝내줘요 💅",
       blogUrl: "https://velog.io/@ur2e/StringBuilder",
       blogDesc: "📚 저 사실 공부도 잘해요",
       blogEmoji: "📚"
@@ -893,7 +893,7 @@
         <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
           <div class="blog-preview-img-placeholder">${emoji}</div>
           <div class="blog-preview-info">
-            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-title">벨로그</div>
             <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
           </div>
         </a>`;
@@ -906,7 +906,7 @@
         <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
           <img class="blog-preview-img" src="${localImg}" alt="블로그 미리보기" />
           <div class="blog-preview-info">
-            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-title">벨로그</div>
             <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
           </div>
         </a>`;
@@ -939,7 +939,7 @@
         <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
           <div class="blog-preview-img-placeholder">${emoji || '✍️'}</div>
           <div class="blog-preview-info">
-            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-title">벨로그</div>
             <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
           </div>
         </a>`;
@@ -1078,7 +1078,7 @@
       }
       if (m.blogUrl !== undefined && m.blogUrl) {
         const blogLabel = m.blogDesc ? `<p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.blogDesc}</p>` : '';
-        blogArea.innerHTML = `${blogLabel}<div id="blog-preview-below"></div>`;
+        blogArea.innerHTML += `${blogLabel}<div id="blog-preview-below"></div>`;
         renderBlogPreview('blog-preview-below', m.blogUrl, m.blogPreviewImg, m.blogEmoji);
       }
     }
