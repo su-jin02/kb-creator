@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>KB크리에이터 - 차세대 MZ사원</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --kb-yellow: #F5C400;
+      --kb-yellow-dark: #D4A800;
+      --kb-yellow-light: #FFF3B0;
+      --kb-black: #1A1A1A;
+      --kb-gray: #555;
+      --kb-light: #FFFDF0;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+      background: var(--kb-light);
+      color: var(--kb-black);
+      overflow-x: hidden;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(160deg, #FFE033 0%, #F5C400 50%, #E6AE00 100%);
+      overflow: hidden;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      top: -150px; right: -150px;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 50%;
+      bottom: -100px; left: -100px;
+    }
+
+    .kb-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,0,0,0.12);
+      color: #1A1A1A;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 2px;
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-bottom: 32px;
+      text-transform: uppercase;
+    }
+
+    .kb-logo {
+      font-size: 22px;
+      font-weight: 900;
+      background: white;
+      color: var(--kb-yellow);
+      width: 40px; height: 40px;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 72px);
+      font-weight: 900;
+      color: #1A1A1A;
+      line-height: 1.15;
+      letter-spacing: -1px;
+      margin-bottom: 16px;
+      position: relative; z-index: 1;
+    }
+
+    .hero h1 span {
+      display: block;
+      color: white;
+      text-shadow: 0 2px 12px rgba(0,0,0,0.15);
+    }
+
+    .hero-sub {
+      font-size: clamp(15px, 2.5vw, 20px);
+      color: rgba(0,0,0,0.6);
+      font-weight: 500;
+      margin-bottom: 48px;
+      position: relative; z-index: 1;
+    }
+
+    .scroll-hint {
+      position: relative; z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      color: rgba(0,0,0,0.45);
+      font-size: 13px;
+      animation: bounce 2s infinite;
+    }
+
+    .scroll-hint::after {
+      content: '↓';
+      font-size: 20px;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(8px); }
+    }
+
+    /* ── MEMBERS SECTION ── */
+    .members-section {
+      padding: 80px 20px 100px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-title h2 {
+      font-size: clamp(24px, 4vw, 42px);
+      font-weight: 900;
+      color: var(--kb-black);
+      margin-bottom: 12px;
+    }
+
+    .section-title h2 em {
+      font-style: normal;
+      color: var(--kb-yellow-dark);
+      border-bottom: 4px solid var(--kb-yellow);
+    }
+
+    .section-title p {
+      color: var(--kb-gray);
+      font-size: 16px;
+    }
+
+    /* ── MEMBER CARDS ── */
+    .members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      justify-items: center;
+    }
+
+    @media (min-width: 768px) {
+      .members-grid {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    .member-card {
+      background: white;
+      border-radius: 24px;
+      padding: 28px 16px 24px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 2px solid transparent;
+      width: 100%;
+      max-width: 220px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .member-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--kb-yellow), var(--kb-yellow-dark));
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .member-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 48px rgba(245, 196, 0, 0.25);
+      border-color: var(--kb-yellow);
+    }
+
+    .member-card:hover::before { transform: scaleX(1); }
+
+    .member-card:active { transform: translateY(-4px) scale(0.98); }
+
+    .member-photo {
+      width: 100px; height: 100px;
+      border-radius: 50%;
+      margin: 0 auto 16px;
+      overflow: hidden;
+      border: 3px solid var(--kb-yellow-light);
+      background: var(--kb-yellow-light);
+      position: relative;
+    }
+
+    .member-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    /* placeholder avatar */
+    .avatar-placeholder {
+      width: 100%; height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 36px;
+      background: linear-gradient(135deg, #FFE55C, #F5C400);
+    }
+
+    .play-icon {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.4);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .play-icon svg { width: 32px; height: 32px; fill: white; }
+
+    .member-card:hover .play-icon { opacity: 1; }
+
+    .member-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: var(--kb-black);
+      margin-bottom: 8px;
+    }
+
+    .member-intro {
+      font-size: 13px;
+      color: var(--kb-gray);
+      line-height: 1.55;
+    }
+
+    .member-tag {
+      display: inline-block;
+      margin-top: 12px;
+      background: var(--kb-yellow-light);
+      color: var(--kb-yellow-dark);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 50px;
+    }
+
+    /* ── MODAL ── */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .modal {
+      background: white;
+      border-radius: 28px;
+      width: 100%;
+      max-width: 680px;
+      overflow: hidden;
+      transform: scale(0.92) translateY(20px);
+      transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+    .modal-overlay.active .modal {
+      transform: scale(1) translateY(0);
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, #FFE033, #F5C400);
+      padding: 28px 28px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .modal-photo {
+      width: 72px; height: 72px;
+      border-radius: 50%;
+      border: 3px solid white;
+      overflow: hidden;
+      flex-shrink: 0;
+      background: var(--kb-yellow-light);
+    }
+
+    .modal-photo img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+    }
+
+    .modal-photo .avatar-placeholder { font-size: 28px; }
+
+    .modal-info h3 {
+      font-size: 22px;
+      font-weight: 900;
+      color: var(--kb-black);
+    }
+
+    .modal-info p {
+      font-size: 14px;
+      color: rgba(0,0,0,0.6);
+      margin-top: 4px;
+    }
+
+    .modal-close {
+      margin-left: auto;
+      background: rgba(0,0,0,0.12);
+      border: none;
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+
+    .modal-close:hover { background: rgba(0,0,0,0.25); }
+
+    .modal-body { padding: 28px; }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #111;
+    }
+
+    .video-wrapper iframe,
+    .video-wrapper video {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .video-placeholder {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, #1a1a1a, #333);
+      color: white;
+      gap: 12px;
+      font-size: 15px;
+    }
+
+    .video-placeholder svg {
+      width: 56px; height: 56px;
+      fill: var(--kb-yellow);
+    }
+
+    .modal-desc {
+      margin-top: 20px;
+      font-size: 15px;
+      line-height: 1.7;
+      color: var(--kb-gray);
+    }
+
+    .modal-desc strong { color: var(--kb-black); }
+
+    .blog-preview-card {
+      display: block;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 2px solid var(--kb-yellow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform 0.2s, box-shadow 0.2s;
+      background: white;
+    }
+
+    .blog-preview-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(245,196,0,0.25);
+    }
+
+    .blog-preview-img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      display: block;
+      background: var(--kb-yellow-light);
+    }
+
+    .blog-preview-img-placeholder {
+      width: 100%;
+      height: 200px;
+      background: linear-gradient(135deg, #FFE55C, #F5C400);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 48px;
+    }
+
+    .blog-preview-info {
+      padding: 16px 18px;
+      border-top: 2px solid var(--kb-yellow-light);
+    }
+
+    .blog-preview-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--kb-black);
+      margin-bottom: 6px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .blog-preview-desc {
+      font-size: 13px;
+      color: var(--kb-gray);
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .blog-preview-domain {
+      margin-top: 8px;
+      font-size: 12px;
+      color: var(--kb-yellow-dark);
+      font-weight: 700;
+    }
+
+    .blog-link-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      background: linear-gradient(135deg, #FFFBE6, #FFF3B0);
+      border: 2px solid var(--kb-yellow);
+      border-radius: 16px;
+      padding: 40px 24px;
+      text-align: center;
+    }
+
+    .blog-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--kb-yellow);
+      color: var(--kb-black);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 14px 28px;
+      border-radius: 50px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .blog-btn:hover {
+      background: var(--kb-yellow-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--kb-black);
+      color: rgba(255,255,255,0.45);
+      text-align: center;
+      padding: 28px 20px;
+      font-size: 13px;
+    }
+
+    footer span { color: var(--kb-yellow); }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<section class="hero">
+  <div class="kb-badge">
+    <div class="kb-logo">KB</div>
+    KB크리에이터 공모전
+  </div>
+
+  <h1>
+    KB를 이끌어갈
+    <span>차세대 MZ사원</span>
+  </h1>
+
+  <p class="hero-sub">우리는 콘텐츠로 KB의 내일을 그립니다</p>
+
+  <div class="scroll-hint">팀원 만나기</div>
+</section>
+
+<!-- ── MEMBERS ── -->
+<section class="members-section">
+  <div class="section-title">
+    <h2>우리 <em>팀을 소개</em>합니다</h2>
+    <p>카드를 클릭하면 각자의 영상 제작물을 볼 수 있어요</p>
+  </div>
+
+  <div class="members-grid" id="membersGrid"></div>
+</section>
+
+<!-- ── MODAL ── -->
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="modal-photo" id="modalPhoto"></div>
+      <div class="modal-info">
+        <h3 id="modalName"></h3>
+        <p id="modalIntro"></p>
+      </div>
+      <button class="modal-close" id="modalClose">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="video-wrapper" id="videoWrapper"></div>
+      <p class="modal-desc" id="modalDesc"></p>
+    </div>
+  </div>
+</div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>2024 <span>KB크리에이터</span> 공모전 &nbsp;|&nbsp; 차세대 MZ사원 팀</p>
+</footer>
+
+<script>
+  // ── 팀원 데이터 (여기를 수정하세요) ──
+  const members = [
+    {
+      name: "박서희",
+      intro: "아이디어로 세상을 바꾸는 기획자",
+      tag: "기획",
+      emoji: "😎",
+      photo: "",           // 사진 URL 또는 로컬 경로 (없으면 이모지 표시)
+      videoUrl: "",        // YouTube embed URL 또는 mp4 URL
+      desc: "KB의 디지털 혁신을 콘텐츠로 담아냈습니다. 고객의 일상 속 KB를 보여주는 브이로그 형식의 영상 제작물입니다."
+    },
+    {
+      name: "천은지",
+      intro: "영상으로 감동을 전달하는 크리에이터",
+      tag: "영상편집",
+      emoji: "🎬",
+      photo: "",
+      blogUrl: "",         // 블로그 URL을 여기에 입력하세요
+      desc: "MZ세대의 시선으로 바라본 KB금융의 이야기를 담은 콘텐츠입니다."
+    },
+    {
+      name: "지유리",
+      intro: "데이터로 트렌드를 읽는 분석가",
+      tag: "마케팅",
+      emoji: "📊",
+      photo: "",
+      videoUrl: "",
+      desc: "금융 트렌드와 KB의 혁신을 인포그래픽 영상으로 풀어낸 작품입니다."
+    },
+    {
+      name: "장현지",
+      intro: "디자인으로 브랜드를 빛내는 아티스트",
+      tag: "디자인",
+      emoji: "🎨",
+      photo: "",
+      videoUrl: "",
+      desc: "KB의 브랜드 아이덴티티를 모션그래픽으로 재해석한 크리에이티브 영상입니다."
+    },
+    {
+      name: "전수진",
+      intro: "개발로 미래 금융을 만드는 엔지니어",
+      tag: "개발",
+      emoji: "💻",
+      photo: "file/sujin.jpeg",
+      videoUrl: "file/sujin.mp4",
+      blogUrl: "https://m.blog.naver.com/hera4224/223011056461",
+      desc: "어학연수 경험으로 쌓은 글쓰기 최강 능력 블로거"
+    }
+  ];
+
+  // ── 카드 렌더링 ──
+  const grid = document.getElementById('membersGrid');
+
+  members.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'member-card';
+    card.innerHTML = `
+      <div class="member-photo">
+        ${m.photo
+          ? `<img src="${m.photo}" alt="${m.name}" />`
+          : `<div class="avatar-placeholder">${m.emoji}</div>`}
+        <div class="play-icon">
+          <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+        </div>
+      </div>
+      <div class="member-name">${m.name}</div>
+      <div class="member-intro">${m.intro}</div>
+      <span class="member-tag">${m.tag}</span>
+    `;
+    card.addEventListener('click', () => openModal(i));
+    grid.appendChild(card);
+  });
+
+  // ── 블로그 미리보기 ──
+  async function renderBlogPreview(containerId, url) {
+    const el = document.getElementById(containerId);
+    if (!el) return;
+    el.innerHTML = `<div class="blog-link-box"><span style="color:#aaa;font-size:14px;">미리보기 불러오는 중...</span></div>`;
+    try {
+      const res = await fetch(`https://api.microlink.io/?url=${encodeURIComponent(url)}`);
+      const data = await res.json();
+      if (data.status === 'success') {
+        const { title, description, image, url: link } = data.data;
+        const imgHtml = image?.url
+          ? `<img class="blog-preview-img" src="${image.url}" alt="블로그 미리보기" />`
+          : `<div class="blog-preview-img-placeholder">✍️</div>`;
+        el.innerHTML = `
+          <a class="blog-preview-card" href="${link || url}" target="_blank" rel="noopener noreferrer">
+            ${imgHtml}
+            <div class="blog-preview-info">
+              <div class="blog-preview-title">${title || '블로그 보기'}</div>
+              ${description ? `<div class="blog-preview-desc">${description}</div>` : ''}
+              <div class="blog-preview-domain">📝 blog.naver.com</div>
+            </div>
+          </a>`;
+      } else {
+        throw new Error('fetch failed');
+      }
+    } catch {
+      el.innerHTML = `
+        <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
+          <div class="blog-preview-img-placeholder">✍️</div>
+          <div class="blog-preview-info">
+            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-domain">📝 blog.naver.com</div>
+          </div>
+        </a>`;
+    }
+  }
+
+  // ── 모달 ──
+  const overlay = document.getElementById('modalOverlay');
+  const modalPhoto = document.getElementById('modalPhoto');
+  const modalName = document.getElementById('modalName');
+  const modalIntro = document.getElementById('modalIntro');
+  const videoWrapper = document.getElementById('videoWrapper');
+  const modalDesc = document.getElementById('modalDesc');
+
+  function openModal(i) {
+    const m = members[i];
+    modalPhoto.innerHTML = m.photo
+      ? `<img src="${m.photo}" alt="${m.name}" />`
+      : `<div class="avatar-placeholder">${m.emoji}</div>`;
+    modalName.textContent = m.name;
+    modalIntro.textContent = m.intro;
+    // 영상 없이 블로그만 있는 경우
+    if (m.blogUrl !== undefined && !m.videoUrl) {
+      modalDesc.innerHTML = `<strong>${m.name}</strong>의 블로그 콘텐츠<br><br>${m.desc}`;
+      videoWrapper.style.paddingBottom = '0';
+      videoWrapper.style.height = 'auto';
+      videoWrapper.innerHTML = `<div id="blog-preview-solo"></div>`;
+      if (m.blogUrl) {
+        renderBlogPreview('blog-preview-solo', m.blogUrl);
+      } else {
+        document.getElementById('blog-preview-solo').innerHTML =
+          `<div class="blog-link-box"><span style="color:#aaa;font-size:14px;">블로그 URL을 등록해주세요</span></div>`;
+      }
+    } else {
+      // 영상이 있는 경우
+      modalDesc.innerHTML = `<strong>${m.name}</strong>의 영상 제작물<br><br>${m.desc}`;
+      videoWrapper.style.paddingBottom = '56.25%';
+      videoWrapper.style.height = '0';
+      if (m.videoUrl) {
+        const isYoutube = m.videoUrl.includes('youtube') || m.videoUrl.includes('youtu.be');
+        const isMp4 = m.videoUrl.endsWith('.mp4');
+        if (isYoutube) {
+          videoWrapper.innerHTML = `<iframe src="${m.videoUrl}" allowfullscreen allow="autoplay; encrypted-media"></iframe>`;
+        } else if (isMp4) {
+          videoWrapper.innerHTML = `<video src="${m.videoUrl}" controls></video>`;
+        } else {
+          videoWrapper.innerHTML = `<iframe src="${m.videoUrl}" allowfullscreen></iframe>`;
+        }
+      } else {
+        videoWrapper.innerHTML = `
+          <div class="video-placeholder">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+            <span>영상 URL을 등록해주세요</span>
+          </div>`;
+      }
+      // 영상 + 블로그 둘 다 있는 경우 미리보기 카드 추가
+      if (m.blogUrl !== undefined && m.blogUrl) {
+        const previewId = 'blog-preview-' + i;
+        modalDesc.innerHTML += `<div id="${previewId}" style="margin-top:16px;"></div>`;
+        renderBlogPreview(previewId, m.blogUrl);
+      }
+    }
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+    setTimeout(() => { videoWrapper.innerHTML = ''; }, 300);
+  }
+
+  document.getElementById('modalClose').addEventListener('click', closeModal);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+</script>
+</body>
+</html>
