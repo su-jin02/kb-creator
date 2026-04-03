@@ -374,7 +374,7 @@
 
     .video-wrapper {
       position: relative;
-      padding-bottom: 56.25%;
+      padding-bottom: 177.78%;
       height: 0;
       border-radius: 16px;
       overflow: hidden;
@@ -387,6 +387,7 @@
       top: 0; left: 0;
       width: 100%; height: 100%;
       border: none;
+      object-fit: cover;
     }
 
     .video-placeholder {
@@ -582,7 +583,7 @@
 <section class="hero">
   <div class="kb-badge">
     <div class="kb-logo">KB</div>
-    KB크리에이터 공모전
+    KB 크리에이터 5기 지원
   </div>
 
   <h1>
@@ -651,7 +652,7 @@
       intro: "사람 마음을 여는 말, 그게 내 특기 🗣️",
       tag: "인터뷰 & 커뮤니케이션",
       emoji: "🎙️",
-      photo: "",
+      photo: "file/en.jpeg",
       videoUrl: "file/en.mp4",
       blogUrl: "",         // 블로그 URL을 여기에 입력하세요
       desc: "🇲🇳 몽골에서 터진 그 쇼츠, 바로 나야 🔥"
@@ -663,14 +664,16 @@
       emoji: "✍️",
       photo: "file/yuri.jpeg",
       videoUrl: "file/yuri.mp4",
-      desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥"
+      desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥",
+      extraImg: "file/yuri2.jpeg",
+      extraImgDesc: "🎨 포토샵? 그것도 제 특기예요 ✨"
     },
     {
       name: "장현지",
       intro: "🧭 팀의 방향을 잡는 사람, 혼돈 속의 나침반",
       tag: "총괄PM",
       emoji: "🧭",
-      photo: "",
+      photo: "file/hy.jpeg",
       videoUrl: "",
       desc: "KB의 브랜드 아이덴티티를 모션그래픽으로 재해석한 크리에이티브 영상입니다."
     },
@@ -739,7 +742,7 @@
           const imgHtml = image?.url
             ? `<img class="insta-card-img" src="${image.url}" alt="Instagram Reel" />`
             : `<div class="insta-card-img-placeholder">🎬</div>`;
-          card.innerHTML = `${imgHtml}<div class="insta-card-footer">▶ Reel ${i + 1} 보기</div>`;
+          card.innerHTML = `${imgHtml}<div class="insta-card-footer">▶ Reels ${i + 1} 보기</div>`;
         }
       } catch { /* 플레이스홀더 유지 */ }
     });
@@ -856,9 +859,14 @@
             <span>영상 URL을 등록해주세요</span>
           </div>`;
       }
-      // 영상 + 블로그 둘 다 있는 경우 영상 아래에 렌더링
+      // 영상 아래 추가 이미지
       const blogArea = document.getElementById('modalBlogArea');
       blogArea.innerHTML = '';
+      if (m.extraImg) {
+        blogArea.innerHTML += `
+          <p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.extraImgDesc || ''}</p>
+          <img src="${m.extraImg}" alt="추가 이미지" style="width:100%;border-radius:16px;display:block;" />`;
+      }
       if (m.blogUrl !== undefined && m.blogUrl) {
         const blogLabel = m.blogDesc ? `<p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.blogDesc}</p>` : '';
         blogArea.innerHTML = `${blogLabel}<div id="blog-preview-below"></div>`;
