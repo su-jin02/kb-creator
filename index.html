@@ -5,6 +5,37 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>KB크리에이터 - 차세대 MZ사원</title>
   <style>
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextL.ttf') format('truetype');
+      font-weight: 300;
+    }
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextM.ttf') format('truetype');
+      font-weight: 400;
+    }
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextM.ttf') format('truetype');
+      font-weight: 500;
+    }
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextB.ttf') format('truetype');
+      font-weight: 700;
+    }
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextB.ttf') format('truetype');
+      font-weight: 800;
+    }
+    @font-face {
+      font-family: 'KBfgText';
+      src: url('file/KBfgTextB.ttf') format('truetype');
+      font-weight: 900;
+    }
+
     * { margin: 0; padding: 0; box-sizing: border-box; }
 
     :root {
@@ -19,7 +50,7 @@
     html { scroll-behavior: smooth; }
 
     body {
-      font-family: 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+      font-family: 'KBfgText', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
       background: var(--kb-light);
       color: var(--kb-black);
       overflow-x: hidden;
@@ -468,6 +499,108 @@
       margin-top: 6px;
     }
 
+    /* ── PM 경고창 ── */
+    .pm-alert {
+      border: 3px solid var(--kb-black);
+      border-radius: 16px;
+      overflow: hidden;
+      font-family: 'KBfgText', sans-serif;
+    }
+
+    .pm-alert-bar {
+      background: var(--kb-black);
+      color: var(--kb-yellow);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 8px 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: 0.5px;
+    }
+
+    .pm-alert-bar .dots {
+      display: flex; gap: 5px; margin-left: auto;
+    }
+
+    .pm-alert-bar .dot {
+      width: 10px; height: 10px; border-radius: 50%;
+    }
+
+    .pm-alert-body {
+      background: #FFFDF0;
+      padding: 28px 24px;
+      text-align: center;
+    }
+
+    .pm-alert-icon {
+      font-size: 48px;
+      margin-bottom: 16px;
+      animation: shake 1.5s infinite;
+    }
+
+    @keyframes shake {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-8deg); }
+      40% { transform: rotate(8deg); }
+      60% { transform: rotate(-4deg); }
+      80% { transform: rotate(4deg); }
+    }
+
+    .pm-alert-title {
+      font-size: 17px;
+      font-weight: 900;
+      color: var(--kb-black);
+      line-height: 1.5;
+      margin-bottom: 14px;
+    }
+
+    .pm-alert-title em {
+      font-style: normal;
+      color: var(--kb-yellow-dark);
+      border-bottom: 2px solid var(--kb-yellow);
+    }
+
+    .pm-alert-desc {
+      font-size: 14px;
+      color: var(--kb-gray);
+      line-height: 1.8;
+      margin-bottom: 24px;
+    }
+
+    .pm-alert-btn {
+      display: inline-block;
+      background: var(--kb-yellow);
+      color: var(--kb-black);
+      font-size: 15px;
+      font-weight: 800;
+      padding: 12px 36px;
+      border-radius: 8px;
+      border: 2px solid var(--kb-black);
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+      box-shadow: 3px 3px 0 var(--kb-black);
+    }
+
+    .pm-alert-btn:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 5px 5px 0 var(--kb-black);
+    }
+
+    .pm-alert-btn:active {
+      transform: translate(1px, 1px);
+      box-shadow: 1px 1px 0 var(--kb-black);
+    }
+
+    .pm-alert-footer {
+      background: #f0f0f0;
+      border-top: 2px solid var(--kb-black);
+      padding: 10px 16px;
+      font-size: 11px;
+      color: #888;
+      text-align: left;
+    }
+
     .blog-preview-card {
       display: block;
       border-radius: 16px;
@@ -592,7 +725,7 @@
   </h1>
 
   <p class="hero-sub">우리는 콘텐츠로 KB의 내일을 그립니다</p>
-  <p class="hero-team">🏆 KB증권을 빛낼 최강 조합 5인방 🏆</p>
+  <p class="hero-team">🏆 깨비증권 최강 조합 5인방 🏆</p>
 
   <div class="scroll-hint">팀원 만나기</div>
 </section>
@@ -636,7 +769,7 @@
   const members = [
     {
       name: "박서희",
-      intro: "🎥 렌즈 뒤에서 모든 장면을 완성하는 사람",
+      intro: "🎥 내 눈이 곧 카메라, 현장은 내 무대",
       tag: "촬영연출",
       emoji: "🎥",
       photo: "file/se.jpeg",
@@ -653,7 +786,7 @@
       tag: "인터뷰 & 커뮤니케이션",
       emoji: "🎙️",
       photo: "file/en.jpeg",
-      videoUrl: "file/en.mp4",
+      videoUrls: ["file/en.mp4"],
       blogUrl: "",         // 블로그 URL을 여기에 입력하세요
       desc: "🇲🇳 몽골에서 터진 그 쇼츠, 바로 나야 🔥"
     },
@@ -666,7 +799,10 @@
       videoUrl: "file/yuri.mp4",
       desc: "💃 춤으로 말해요, 설명은 필요 없어 🔥",
       extraImg: "file/yuri2.jpeg",
-      extraImgDesc: "🎨 포토샵? 그것도 제 특기예요 ✨"
+      extraImgDesc: "🎨 포토샵? 그것도 제 특기예요 ✨",
+      blogUrl: "https://velog.io/@ur2e/StringBuilder",
+      blogDesc: "📚 저 사실 공부도 잘해요",
+      blogEmoji: "📚"
     },
     {
       name: "장현지",
@@ -674,8 +810,7 @@
       tag: "총괄PM",
       emoji: "🧭",
       photo: "file/hy.jpeg",
-      videoUrl: "",
-      desc: "KB의 브랜드 아이덴티티를 모션그래픽으로 재해석한 크리에이티브 영상입니다."
+      alertStyle: true
     },
     {
       name: "전수진",
@@ -683,10 +818,10 @@
       tag: "편집",
       emoji: "🎬",
       photo: "file/sujin.jpeg",
-      videoUrl: "file/sujin.mp4",
+      videoUrls: ["file/su1.mp4", "file/su2.mp4"],
       blogUrl: "https://m.blog.naver.com/hera4224/223011056461",
       blogPreviewImg: "file/sujin_blog.jpeg",
-      blogDesc: "🥝 뉴질랜드 어학연수 경험을 담은 블로그",
+      blogDesc: "✈️ 어학연수 브이로그는 내가 제일 잘 씀",
       desc: "🇪🇬 이집트 놀러가서 낋여온 유행 쇼츠 🎬"
     }
   ];
@@ -728,7 +863,7 @@
             <div class="insta-card-footer">불러오는 중...</div>
           </a>`).join('')}
       </div>
-      <p class="insta-scroll-hint">← 옆으로 밀어서 더 보기 →</p>`;
+`;
 
     // 각 카드 미리보기 fetch
     urls.forEach(async (url, i) => {
@@ -748,9 +883,22 @@
     });
   }
 
-  async function renderBlogPreview(containerId, url, localImg) {
+  async function renderBlogPreview(containerId, url, localImg, emoji) {
     const el = document.getElementById(containerId);
     if (!el) return;
+
+    // 이모지만 쓰는 경우 API 호출 없이 바로 표시
+    if (!localImg && emoji) {
+      el.innerHTML = `
+        <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
+          <div class="blog-preview-img-placeholder">${emoji}</div>
+          <div class="blog-preview-info">
+            <div class="blog-preview-title">블로그 바로가기</div>
+            <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
+          </div>
+        </a>`;
+      return;
+    }
 
     // 로컬 이미지가 있으면 API 호출 없이 바로 표시
     if (localImg) {
@@ -759,7 +907,7 @@
           <img class="blog-preview-img" src="${localImg}" alt="블로그 미리보기" />
           <div class="blog-preview-info">
             <div class="blog-preview-title">블로그 바로가기</div>
-            <div class="blog-preview-domain">📝 blog.naver.com</div>
+            <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
           </div>
         </a>`;
       return;
@@ -780,7 +928,7 @@
             <div class="blog-preview-info">
               <div class="blog-preview-title">${title || '블로그 보기'}</div>
               ${description ? `<div class="blog-preview-desc">${description}</div>` : ''}
-              <div class="blog-preview-domain">📝 blog.naver.com</div>
+              <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
             </div>
           </a>`;
       } else {
@@ -789,10 +937,10 @@
     } catch {
       el.innerHTML = `
         <a class="blog-preview-card" href="${url}" target="_blank" rel="noopener noreferrer">
-          <div class="blog-preview-img-placeholder">✍️</div>
+          <div class="blog-preview-img-placeholder">${emoji || '✍️'}</div>
           <div class="blog-preview-info">
             <div class="blog-preview-title">블로그 바로가기</div>
-            <div class="blog-preview-domain">📝 blog.naver.com</div>
+            <div class="blog-preview-domain">📝 ${new URL(url).hostname}</div>
           </div>
         </a>`;
     }
@@ -813,6 +961,67 @@
       : `<div class="avatar-placeholder">${m.emoji}</div>`;
     modalName.textContent = m.name;
     modalIntro.textContent = m.intro;
+    // PM 경고창 스타일
+    if (m.alertStyle) {
+      modalDesc.innerHTML = '';
+      videoWrapper.style.paddingBottom = '0';
+      videoWrapper.style.height = 'auto';
+      videoWrapper.innerHTML = `
+        <div class="pm-alert">
+          <div class="pm-alert-bar">
+            ⚠️ &nbsp;SYSTEM ALERT
+            <div class="dots">
+              <div class="dot" style="background:#ff5f57;"></div>
+              <div class="dot" style="background:#febc2e;"></div>
+              <div class="dot" style="background:#28c840;"></div>
+            </div>
+          </div>
+          <div class="pm-alert-body">
+            <div class="pm-alert-icon">🚨</div>
+            <div class="pm-alert-title">
+              이런 <em>능력자들을 통솔</em>하는<br>PM이 궁금하다면?
+            </div>
+            <div class="pm-alert-desc">
+              촬영, 편집, 기획, 인터뷰까지—<br>
+              이 모든 걸 하나로 묶는 사람이 있습니다.<br><br>
+              함께한다면, 더 많은 매력을<br>
+              직접 보여드리겠습니다 🧭
+            </div>
+            <button class="pm-alert-btn" id="pmAlertOk">확인했습니다 ✓</button>
+          </div>
+          <div class="pm-alert-footer">
+            ※ 본 알림은 장현지 총괄PM이 직접 승인한 메시지입니다.
+          </div>
+        </div>`;
+      document.getElementById('pmAlertOk').addEventListener('click', closeModal);
+      document.getElementById('modalBlogArea').innerHTML = '';
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      return;
+    }
+
+    // 여러 영상이 있는 경우 (세로 스크롤)
+    if (m.videoUrls && m.videoUrls.length) {
+      modalDesc.innerHTML = m.desc ? `<strong style="font-size:17px;">${m.desc}</strong>` : '';
+      videoWrapper.style.paddingBottom = '0';
+      videoWrapper.style.height = 'auto';
+      videoWrapper.innerHTML = m.videoUrls.map((url, idx) => `
+        <div style="position:relative;padding-bottom:177.78%;height:0;border-radius:16px;overflow:hidden;background:#111;${idx > 0 ? 'margin-top:16px;' : ''}">
+          <video src="${url}" controls style="position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;"></video>
+        </div>`).join('');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      // 블로그도 있으면 아래에 추가
+      const blogArea2 = document.getElementById('modalBlogArea');
+      blogArea2.innerHTML = '';
+      if (m.blogUrl) {
+        const blogLabel = m.blogDesc ? `<p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.blogDesc}</p>` : '';
+        blogArea2.innerHTML = `${blogLabel}<div id="blog-preview-multi"></div>`;
+        renderBlogPreview('blog-preview-multi', m.blogUrl, m.blogPreviewImg, m.blogEmoji);
+      }
+      return;
+    }
+
     // 인스타그램 릴스가 있는 경우
     if (m.instaUrls && m.instaUrls.length) {
       modalDesc.innerHTML = m.desc ? `<strong style="font-size:17px;">${m.desc}</strong>` : '';
@@ -832,7 +1041,7 @@
       videoWrapper.style.height = 'auto';
       videoWrapper.innerHTML = `<div id="blog-preview-solo"></div>`;
       if (m.blogUrl) {
-        renderBlogPreview('blog-preview-solo', m.blogUrl, m.blogPreviewImg);
+        renderBlogPreview('blog-preview-solo', m.blogUrl, m.blogPreviewImg, m.blogEmoji);
       } else {
         document.getElementById('blog-preview-solo').innerHTML =
           `<div class="blog-link-box"><span style="color:#aaa;font-size:14px;">블로그 URL을 등록해주세요</span></div>`;
@@ -870,7 +1079,7 @@
       if (m.blogUrl !== undefined && m.blogUrl) {
         const blogLabel = m.blogDesc ? `<p style="font-size:17px;font-weight:700;color:var(--kb-black);margin:20px 0 10px;">${m.blogDesc}</p>` : '';
         blogArea.innerHTML = `${blogLabel}<div id="blog-preview-below"></div>`;
-        renderBlogPreview('blog-preview-below', m.blogUrl, m.blogPreviewImg);
+        renderBlogPreview('blog-preview-below', m.blogUrl, m.blogPreviewImg, m.blogEmoji);
       }
     }
 
